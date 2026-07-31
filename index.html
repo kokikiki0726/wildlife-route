@@ -276,15 +276,62 @@ table.sortable th.desc::after { content:"↓"; opacity:1; }
   .sorter { margin-left:0; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+
+/* ---- 別冊（本編とは別枠） ---- */
+.annex { margin-top:26px; padding-top:34px; border-top:1px dashed var(--line); }
+.annex .sh { border-bottom-color:var(--moss); }
+.annex-tag { display:inline-block; font-family:var(--sans); font-size:10.5px; font-weight:700;
+  letter-spacing:.08em; padding:3px 9px; border-radius:99px; margin-bottom:12px;
+  background:var(--forest); color:var(--paper); }
+@media (prefers-color-scheme: dark) { .annex-tag { color:#0F1512; } }
+:root[data-theme="dark"] .annex-tag { color:#0F1512; }
+.rail nav a.annex-link { margin-top:10px; padding-top:12px; border-top:1px dashed var(--line); }
+.rail nav a.annex-link .n { font-family:var(--sans); font-weight:700; opacity:.9; }
+
+/* ---- 日程図（ガント） ---- */
+.gantt { border:1px solid var(--line); margin:18px 0 10px; overflow-x:auto; }
+.gantt-in { min-width:660px; }
+.g-head { display:grid; grid-template-columns:122px repeat(6,1fr); background:var(--birch); }
+.g-head div { padding:6px 6px; font-size:11px; color:var(--stone); text-align:center;
+  border-left:1px solid var(--line); }
+.g-head div:first-child { border-left:0; }
+.g-lane { display:grid; grid-template-columns:122px minmax(0,1fr); border-top:1px solid var(--line); }
+.g-lab { padding:10px 11px; font-size:12.5px; font-weight:700; color:var(--forest);
+  background:var(--panel); border-left:3px solid var(--moss); line-height:1.5; }
+.g-lab span { display:block; font-weight:400; font-size:10.5px; color:var(--stone); margin-top:2px; }
+.g-rows { display:flex; flex-direction:column; gap:4px; padding:7px 0; position:relative;
+  background:
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px calc(100%/6)); }
+.g-row { display:grid; grid-template-columns:repeat(24,1fr); align-items:center; min-height:20px; }
+.g-bar { grid-row:1; background:var(--forest); color:var(--paper); font-size:11px;
+  padding:3px 7px; border-radius:2px; line-height:1.45; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }
+@media (prefers-color-scheme: dark) { .g-bar { color:#0F1512; } }
+:root[data-theme="dark"] .g-bar { color:#0F1512; }
+.g-bar.mid { background:var(--moss); }
+.g-bar.key { background:var(--rust); }
+.g-bar.ghost { background:transparent; color:var(--stone); padding-left:0; border-radius:0; }
+.g-bar.zone { background:var(--rust-bg); color:var(--rust); border:1px dashed var(--rust);
+  font-weight:700; text-align:center; }
+.g-note { grid-row:1; font-size:11px; color:var(--rust); padding-left:8px; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }
+.g-note.q { color:var(--stone); }
+.g-cap { font-size:12px; color:var(--stone); margin:0 0 24px; }
+@media (max-width:980px) {
+  .g-head { grid-template-columns:96px repeat(6,1fr); }
+  .g-lane { grid-template-columns:96px minmax(0,1fr); }
+  .g-lab { font-size:11.5px; padding:8px; }
+}
+
 </style>
 
 <div id="prog"></div>
-<details class="mobnav"><summary>目次</summary><nav><a href="#top"><span class="n"></span>はじめに</a><a href="#conclusion"><span class="n">01</span>結論</a><a href="#routes"><span class="n">02</span>おすすめルート3選</a><a href="#plan2028"><span class="n">03</span>2028年ルート</a><a href="#path"><span class="n">04</span>研究者になるまでの道</a><a href="#vet"><span class="n">05</span>獣医からのルート</a><a href="#compare"><span class="n">06</span>23校を比べる</a><a href="#schools"><span class="n">07</span>大学ごとの詳細</a><a href="#money"><span class="n">08</span>奨学金</a><a href="#plan"><span class="n">09</span>これからの動き</a><a href="#open"><span class="n">10</span>まだ分からないこと</a></nav></details>
+<details class="mobnav"><summary>目次</summary><nav><a href="#top"><span class="n"></span>はじめに</a><a href="#conclusion"><span class="n">01</span>結論</a><a href="#routes"><span class="n">02</span>おすすめルート3選</a><a href="#plan2028"><span class="n">03</span>2028年ルート</a><a href="#path"><span class="n">04</span>研究者になるまでの道</a><a href="#vet"><span class="n">05</span>獣医からのルート</a><a href="#compare"><span class="n">06</span>23校を比べる</a><a href="#schools"><span class="n">07</span>大学ごとの詳細</a><a href="#money"><span class="n">08</span>奨学金</a><a href="#plan"><span class="n">09</span>これからの動き</a><a href="#open"><span class="n">10</span>まだ分からないこと</a><a href="#annex" class="annex-link"><span class="n">別冊</span>日本と中国</a></nav></details>
 
 <div class="wrap">
 <aside class="rail">
   <div class="mark">オオカミ研究者に<br>なるための進学ルート</div>
-  <nav id="nav"><a href="#top"><span class="n"></span>はじめに</a><a href="#conclusion"><span class="n">01</span>結論</a><a href="#routes"><span class="n">02</span>おすすめルート3選</a><a href="#plan2028"><span class="n">03</span>2028年ルート</a><a href="#path"><span class="n">04</span>研究者になるまでの道</a><a href="#vet"><span class="n">05</span>獣医からのルート</a><a href="#compare"><span class="n">06</span>23校を比べる</a><a href="#schools"><span class="n">07</span>大学ごとの詳細</a><a href="#money"><span class="n">08</span>奨学金</a><a href="#plan"><span class="n">09</span>これからの動き</a><a href="#open"><span class="n">10</span>まだ分からないこと</a></nav>
+  <nav id="nav"><a href="#top"><span class="n"></span>はじめに</a><a href="#conclusion"><span class="n">01</span>結論</a><a href="#routes"><span class="n">02</span>おすすめルート3選</a><a href="#plan2028"><span class="n">03</span>2028年ルート</a><a href="#path"><span class="n">04</span>研究者になるまでの道</a><a href="#vet"><span class="n">05</span>獣医からのルート</a><a href="#compare"><span class="n">06</span>23校を比べる</a><a href="#schools"><span class="n">07</span>大学ごとの詳細</a><a href="#money"><span class="n">08</span>奨学金</a><a href="#plan"><span class="n">09</span>これからの動き</a><a href="#open"><span class="n">10</span>まだ分からないこと</a><a href="#annex" class="annex-link"><span class="n">別冊</span>日本と中国</a></nav>
   <div class="foot">調査日 2026年7月30〜31日<br>為替は ECB 参考レート（2026年7月29日）<br>
     出典は各セクション末尾</div>
 </aside>
@@ -641,6 +688,272 @@ table.sortable th.desc::after { content:"↓"; opacity:1; }
 <ul class="bul"><li>University of Queensland の2027年度の留学生学費 ── 大学自身が「未公表」と表示している。</li><li>Massey の2027年度の学費 ── 同じく未公表。2026年度の額（NZ$34,220〜42,300）で見積もっている。</li><li>University of Montana の UMAAS 奨学金の金額 ── 「学費への充当専用」で、担当の Admissions Counselor に個別確認しないと分からない。</li><li>University of Alberta の英語要件の公式値 ── 大学のページが JavaScript で描画されており本文を取得できなかった。IELTS 6.5（各6.0）とされるが<span class="flag">要確認</span>。</li><li>CZU の BSc Sustainable Forestry のカリキュラムに野生動物・大型肉食獣の科目があるか ── 第2候補を決めるうえで最大の未確認点。</li><li>SGGW（ポーランド）・INN（ノルウェー）・LBTU・EMÜ の英語要件と出願締切。</li><li>チェコ政府奨学金の日本人適格性（開発途上国向けの可能性が高い）。</li><li>各大学の生活費の公式見積 ── 大学が公表していない国が多い。</li><li>江副記念リクルート財団の2027年度の募集日程（2026年度は7月14日開始・9月16日締切）。</li></ul>
 <details class="srcs"><summary>出典（すべて公式サイト）（20件）</summary><ul><li><a href="https://www.ice.gov/doclib/sevis/pdf/stemList2024.pdf" target="_blank" rel="noopener">https://www.ice.gov/doclib/sevis/pdf/stemList2024.pdf</a></li><li><a href="https://financialaid.wisc.edu/types-of-aid/cost-of-attendance/" target="_blank" rel="noopener">https://financialaid.wisc.edu/types-of-aid/cost-of-attendance/</a></li><li><a href="https://admissions.wisc.edu/apply/international/" target="_blank" rel="noopener">https://admissions.wisc.edu/apply/international/</a></li><li><a href="https://www.greenriver.edu/international/admissions/english-requirements.html" target="_blank" rel="noopener">https://www.greenriver.edu/international/admissions/english-requirements.html</a></li><li><a href="https://admission.uoguelph.ca/englishproficiency" target="_blank" rel="noopener">https://admission.uoguelph.ca/englishproficiency</a></li><li><a href="https://vancouver.calendar.ubc.ca/admissions/english-language-admission-standard/english-language-proficiency-tests" target="_blank" rel="noopener">https://vancouver.calendar.ubc.ca/admissions/english-language-admission-standard/english-language-proficiency-tests</a></li><li><a href="https://you.ubc.ca/applying-ubc/requirements/english-language-competency/" target="_blank" rel="noopener">https://you.ubc.ca/applying-ubc/requirements/english-language-competency/</a></li><li><a href="https://www.trentu.ca/futurestudents/admissions/international-students/english-proficiency" target="_blank" rel="noopener">https://www.trentu.ca/futurestudents/admissions/international-students/english-proficiency</a></li><li><a href="https://www.mtu.edu/admissions/apply/international/english/" target="_blank" rel="noopener">https://www.mtu.edu/admissions/apply/international/english/</a></li><li><a href="https://www.massey.ac.nz/about/university-calendar-and-regulations/english-language-competency/" target="_blank" rel="noopener">https://www.massey.ac.nz/about/university-calendar-and-regulations/english-language-competency/</a></li><li><a href="https://www.massey.ac.nz/study/entry-requirements-to-study-at-massey/entry-requirements-for-international-students/" target="_blank" rel="noopener">https://www.massey.ac.nz/study/entry-requirements-to-study-at-massey/entry-requirements-for-international-students/</a></li><li><a href="https://www.slu.se/en/study/programmes-courses/masters-programmes/conservation-and-management-of-fish-and-wildlife/" target="_blank" rel="noopener">https://www.slu.se/en/study/programmes-courses/masters-programmes/conservation-and-management-of-fish-and-wildlife/</a></li><li><a href="https://www.slu.se/en/study/application-and-admission/tuition-fees-and-scholarships/tuition-fees/" target="_blank" rel="noopener">https://www.slu.se/en/study/application-and-admission/tuition-fees-and-scholarships/tuition-fees/</a></li><li><a href="https://www.viaa.gov.lv/en/latvian-state-scholarships" target="_blank" rel="noopener">https://www.viaa.gov.lv/en/latvian-state-scholarships</a></li><li><a href="https://www.studyinlatvia.lv/scholarships" target="_blank" rel="noopener">https://www.studyinlatvia.lv/scholarships</a></li><li><a href="https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/" target="_blank" rel="noopener">https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/</a></li><li><a href="https://www.nzscholarships.govt.nz/" target="_blank" rel="noopener">https://www.nzscholarships.govt.nz/</a></li><li><a href="https://www.fld.czu.cz/en/r-9414-study/r-11075-admission-procedures/r-13200-bachelors-admission-procedure/admission-procedures-bachelor-english-2025-2026.html" target="_blank" rel="noopener">https://www.fld.czu.cz/en/r-9414-study/r-11075-admission-procedures/r-13200-bachelors-admission-procedure/admission-procedures-bachelor-english-2025-2026.html</a></li><li><a href="https://study.czu.cz/programmes/forestry/" target="_blank" rel="noopener">https://study.czu.cz/programmes/forestry/</a></li><li><a href="https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml" target="_blank" rel="noopener">https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml</a></li></ul></details>
 </section>
+
+<section id="annex" class="annex">
+  <span class="annex-tag">別冊・本編とは別の資料</span>
+  <p class="eyebrow">Annex ／ Japan &amp; China</p>
+  <h2 class="sh">日本の国公立と中国の大学</h2>
+  <p class="sh-note">本編（英語で学ぶ海外23校）とは別に、「浪人しない」ことを最優先にしたときの
+    日本の国公立ルートと中国の大学ルートを、同じ物差しで比べた資料です。情報はすべて2026年7月時点。</p>
+
+  <aside class="note info"><b>この別冊の位置づけ</b><p>進路を「決める」ための資料ではなく、ご本人と保護者の方が同じ材料を見て話し合うための資料です。都合の良い情報だけを並べず、不利な点・不確実な点も同じ重さで書いています。私立大学ルートと、中国以外の海外学部進学（＝本編で扱っているルート）は、この別冊の対象外です。</p></aside>
+
+  <div class="figs">
+    <div class="fig"><b>約293万円</b><span>日本の国立・自宅通学（4年）</span></div>
+    <div class="fig"><b>約657万円</b><span>日本の国立・自宅外（4年）</span></div>
+    <div class="fig"><b>約480〜600万円</b><span>中国・自費（4年）</span></div>
+    <div class="fig"><b>約60〜100万円</b><span>中国・CSC全額給付（4年）</span></div>
+  </div>
+
+<h3 class="bh">まず、志望に関わる重要な事実を1つ</h3>
+<aside class="note alert"><b>日本国内に野生のオオカミは生息していません</b><p>ニホンオオカミは20世紀初頭に絶滅したとされています。したがって「日本の大学で野生オオカミの野外研究をする」ことは物理的に不可能です。日本の大学でできるのは、クマ・シカ・イノシシなど大型哺乳類を対象とした生態学・保全管理の訓練で、これはオオカミ研究に必要な手法（行動圏解析、GPS首輪、カメラトラップ、食性分析、個体群動態）とほぼ共通します。一方、中国には野生のオオカミが生息しています（内モンゴル、青蔵高原、新疆など）。ただし学部段階で研究室に所属してオオカミを扱えるとは限りません。</p></aside>
+
+<h3 class="bh">判断軸は4つだけです</h3>
+<div class="tw"><table><thead><tr><th class="l">#</th><th class="l">判断軸</th><th class="l">日本の国公立ルート</th><th class="l">中国の大学ルート</th></tr></thead><tbody>
+<tr><td class="l">1</td><td class="l">浪人回避の確実性<br>（最優先）</td><td class="l">△ 共通テストの出来に結果が直結する。成績が不安定な場合、前期・後期とも不合格の可能性が残る。</td><td class="l">◎ 学科試験がなく書類審査中心。日本の合否が出た後でも出願が間に合う大学がある。「浪人しない」ための保険として機能する。</td></tr>
+<tr><td class="l">2</td><td class="l">費用<br>（4年総額の目安）</td><td class="l">自宅通学 約293万円／自宅外 約657万円（授業料＋入学料＋生活費）</td><td class="l">自費 約480〜600万円／CSC全額給付なら約60〜100万円。<b>「中国は安い」は誤り。</b>自費なら日本の自宅外通学と同程度です。</td></tr>
+<tr><td class="l">3</td><td class="l">研究への近さ</td><td class="l">◎ 日本語で学べ、野生動物管理の教育拠点が複数ある。学部から現場実習に入りやすい。</td><td class="l">△ 中国語ゼロからの開始。最初の1〜2年は語学が主。専門に入るまで時間がかかる。</td></tr>
+<tr><td class="l">4</td><td class="l">大学院での海外進出</td><td class="l">◎ 英語・GPA・研究経験があれば有利。学部の所在国は障害にならない。</td><td class="l">○ 中国語＋英語の二言語は強み。ただしGPAを確保できるかが最大の不確定要素。</td></tr>
+</tbody></table></div>
+
+<h3 class="bh">この別冊の結論</h3>
+<aside class="note good"><b>推奨</b><p>日本の国公立を本命とし、中国ルートを「浪人回避の保険」として並行準備する。</p></aside>
+<div class="tw"><table><thead><tr><th class="l">やること</th><th class="l">内容</th><th class="l">期限の目安</th></tr></thead><tbody>
+<tr><td class="l">① 科目を絞る</td><td class="l">共通テストの必要科目が少ない国公立を軸に、志望校を「科目数の少ない順」で組み直す。全科目を平均的に上げる戦略はとらない。</td><td class="l">2026年9月までに確定</td></tr>
+<tr><td class="l">② 総合型・推薦を使う</td><td class="l">年内に合格が決まる選抜（総合型選抜・学校推薦型選抜）を1つ以上出願する。これが最も確実な浪人回避策。</td><td class="l">出願は9〜11月が中心</td></tr>
+<tr><td class="l">③ 中国語を始める</td><td class="l">週3〜5時間で開始。目標はHSK3級（CSC本科の語学要件）。合格しなくても損はない。</td><td class="l">2026年8月開始</td></tr>
+<tr><td class="l">④ 中国側の書類を先に揃える</td><td class="l">パスポート、成績証明書、健康診断書などは取得に時間がかかる。日本の結果を待たず先に準備する。</td><td class="l">2026年12月までに一式</td></tr>
+</tbody></table></div>
+<aside class="note warn"><b>この結論の弱点（保護者の方が確認すべき点）</b><p>1. <b>時間の分散リスク。</b>中国語学習と共通テスト対策の並行は負担になります。中国語は「1日30〜45分・毎日」の固定枠に限定し、それ以上は増やさない運用が必要です。<br>2. <b>中国ルートの出願締切は、日本の国立後期の合格発表より前である大学が多い。</b>「全部落ちてから出願する」は成立しない可能性が高く、合格を確保したうえで辞退する前提で費用と手間をかける覚悟が要ります。<br>3. <b>中国の大学の卒業は容易ではありません。</b>中退した場合、学歴も費用も残りません。<br>4. <b>CSCの学部枠は非常に狭いと考えられます（<span class="flag">要確認</span>）。</b>「奨学金があるから安く行ける」を前提に資金計画を立てるのは危険です。自費で払えるかどうかで判断してください。</p></aside>
+
+<h3 class="bh">図1　両ルート並行進行の全体スケジュール</h3>
+<div class="gantt"><div class="gantt-in">
+  <div class="g-head"><div></div><div>2026年 8–10月</div><div>11–12月</div><div>2027年 1月</div><div>2月</div><div>3月</div><div>4–9月</div></div>
+  <div class="g-lane">
+    <div class="g-lab">共通準備<span>どちらに進んでも無駄にならない</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar mid" style="grid-column:1/15">中国語 HSK3級 学習（毎日30–45分に固定）</div><div class="g-bar" style="grid-column:15/20">HSK3級 受験</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:1/25">英語（大学院で海外に出るなら最重要。ずっと継続）</div></div>
+    </div>
+  </div>
+  <div class="g-lane">
+    <div class="g-lab">日本 国公立ルート<span>本命</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar" style="grid-column:1/5">志望校を「科目数の少ない順」で確定</div></div>
+      <div class="g-row"><div class="g-bar" style="grid-column:2/8">総合型・学校推薦型選抜 出願／試験</div><div class="g-bar key" style="grid-column:8/10">合格発表</div><div class="g-note" style="grid-column:10/17">← ここで決まれば最も安全</div></div>
+      <div class="g-row"><div class="g-bar" style="grid-column:1/12">共通テスト対策（絞った科目に集中）</div><div class="g-bar key" style="grid-column:12/14">本番</div></div>
+      <div class="g-row"><div class="g-bar" style="grid-column:14/16">二次出願</div><div class="g-bar" style="grid-column:16/18">前期試験</div><div class="g-bar" style="grid-column:18/20">中期・後期</div><div class="g-note" style="grid-column:20/25">3月上旬 前期発表／下旬 中後期発表</div></div>
+    </div>
+  </div>
+  <div class="g-lane">
+    <div class="g-lab">中国 大学ルート<span>保険</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar mid" style="grid-column:1/7">志望大学の調査・招生簡章の入手</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:2/10">出願書類の準備（成績証明・健康診断・パスポート）</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:6/11">CSC奨学金 出願（枠は非常に狭い）</div></div>
+      <div class="g-row"><div class="g-bar" style="grid-column:5/21">大学への出願（受付期間は大学ごとに異なる。11月〜6月に分散）</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:11/19">書類審査・（大学により）オンライン面接</div></div>
+      <div class="g-row"><div class="g-bar key" style="grid-column:18/21">録取通知書</div><div class="g-bar mid" style="grid-column:21/23">ビザ・渡航</div><div class="g-bar" style="grid-column:23/25">9月入学</div></div>
+    </div>
+  </div>
+  <div class="g-lane">
+    <div class="g-lab">判断ゾーン<span>実質的な決断</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar zone" style="grid-column:17/21">3月上旬〜下旬：日本の結果を見て、中国側を進めるか辞退するかを決める</div></div>
+    </div>
+  </div>
+</div></div>
+<p class="g-cap">「共通準備」はどちらに進んでも無駄になりません。ここを8月から始めることがこの計画の要です。中国側の出願は、日本の結果より前に出す必要があります（出願料は捨てる前提のコスト）。</p>
+
+<aside class="note alert"><b>重要：中国側は「日本が全部だめだったら出願する」では間に合いません</b><p>多くの大学の出願締切は3月〜6月ですが、締切が3月中旬の大学もあります（例：ある大学は11月15日〜3月15日）。先に出願して合格を確保し、日本に受かったら辞退するのが現実的な運用です。出願料は戻りません。</p></aside>
+
+<h3 class="bh">日本の国公立ルート</h3>
+<h4 class="bh2">科目を減らす判断の考え方</h4>
+<p>模試の成績が全科目とも不安定という状況で、全科目を均等に引き上げる戦略は最も失敗しやすい選択です。残り約5か月で確実に伸ばすには、対象科目を減らして時間を集中させる必要があります。</p>
+<div class="tw"><table><thead><tr><th class="l">順</th><th class="l">やること</th><th class="l">具体的な手順</th><th class="l">判断基準</th></tr></thead><tbody>
+<tr><td class="l">1</td><td class="l">「必要科目数」で大学を並べ替える</td><td class="l">志望校リストを、偏差値順ではなく共通テストで課される科目数の少ない順に並べ替える。</td><td class="l">7科目型と3科目型では、必要な学習時間が倍以上違います。</td></tr>
+<tr><td class="l">2</td><td class="l">捨てる科目を決める</td><td class="l">不要になった科目の対策時間をゼロにする。中途半端に残さない。</td><td class="l">「もったいない」で残した科目が、必要科目の点数を下げます。</td></tr>
+<tr><td class="l">3</td><td class="l">二次試験の負担で絞る</td><td class="l">二次が「小論文＋面接」のみの大学は、教科の学習負担が大幅に軽くなる。特に後期日程に多い。</td><td class="l">ただし小論文は独立した対策が必要で、無料ではありません。</td></tr>
+<tr><td class="l">4</td><td class="l">日程を重ねる</td><td class="l">前期・中期（公立の一部）・後期の3回に加え、年内の総合型・推薦を入れて受験機会を4回以上にする。</td><td class="l">受験機会の数が、そのまま浪人回避の確率になります。</td></tr>
+</tbody></table></div>
+<aside class="note warn"><b>ただし、科目を減らすことのコスト</b><p>・科目数が少ない大学は、その少ない科目の合格ラインが高くなる傾向があります。「楽になる」のではなく「勝負する場所を変える」だけです。<br>・2025年度入試から共通テストに「情報Ⅰ」が加わっています。2027年度の配点・扱いは必ず各大学の要項で確認（<span class="flag">要確認</span>）。<br>・理系学部で受験科目を絞りすぎると、入学後の専門科目（統計・化学・生物）でつまずくことがあります。生態学は統計を多用する分野です。</p></aside>
+
+<h4 class="bh2">軽量入試のパターン（型で理解する）</h4>
+<div class="tw"><table><thead><tr><th class="l">型</th><th class="l">共通テスト</th><th class="l">二次</th><th class="l">日程</th><th class="l">向いている人</th><th class="l">注意点</th></tr></thead><tbody>
+<tr><td class="l">A. 年内決着型<br>総合型・学校推薦型</td><td class="l">課さない大学あり</td><td class="l">書類・小論文<br>面接・プレゼン</td><td class="l">出願9–11月<br>合否11–12月</td><td class="l">志望動機が明確な人。オオカミ研究という一貫した動機は強い材料になります。</td><td class="l">出願要件に評定平均の下限があることが多い。校内選考が必要な場合も。</td></tr>
+<tr><td class="l">B. 3教科型</td><td class="l">3教科3〜4科目</td><td class="l">1〜2科目</td><td class="l">前期／中期</td><td class="l">得意科目がはっきりしている人</td><td class="l">公立大学に多い型。国立では少数。</td></tr>
+<tr><td class="l">C. 後期・軽量二次型</td><td class="l">5教科型が多い</td><td class="l">小論文＋面接のみ</td><td class="l">後期（3月中旬）</td><td class="l">共通テストで一定点が取れた人</td><td class="l">募集人員が少なく倍率が高い。共通テストの比重が極めて大きい。</td></tr>
+<tr><td class="l">D. 中期日程型</td><td class="l">大学による</td><td class="l">大学による</td><td class="l">中期（3月8日以降）</td><td class="l">受験機会を増やしたい人</td><td class="l">公立大学の一部のみが実施。国立にはありません。</td></tr>
+</tbody></table></div>
+<aside class="note good"><b>優先度：まず「A. 年内決着型」に出願してください</b><p>浪人不可・成績不安定という条件では、年内に1つでも合格を確保することが最も費用対効果の高い行動です。総合型選抜は「学力が足りない人の抜け道」ではなく、志望動機と行動実績を評価する別の物差しです。<b>今すぐできること：</b>読んだ論文・書籍のリスト、動物園や博物館での観察記録、地域の鳥獣害の調べ物を、日付つきで書き溜める。8月から始めれば出願に間に合います。</p></aside>
+
+<h4 class="bh2">動物生態学が学べる国公立大学</h4>
+<p class="small muted">網羅的な一覧ではありません。大学単位ではなく<b>研究室単位</b>で確認することが決定的に重要です（同じ学科でも扱う動物群も手法も研究室ごとに全く異なります）。</p>
+<div class="tw"><table><thead><tr><th class="l">大学</th><th class="l">区分</th><th class="l">学部・学科（目安）</th><th class="l">研究内容・特徴</th><th class="l">オオカミ研究との関係</th></tr></thead><tbody>
+<tr><td class="l">北海道大学</td><td class="l">国立</td><td class="l">農学部 生物資源科学科／獣医学部／環境科学院</td><td class="l">ヒグマ・エゾシカなど大型哺乳類の生態、北方林生態系、野生動物医学。個体数管理の実データが豊富。</td><td class="l">◎ 大型食肉目（ヒグマ）の研究手法がそのまま応用可能</td></tr>
+<tr><td class="l">岐阜大学</td><td class="l">国立</td><td class="l">応用生物科学部</td><td class="l">野生動物管理学研究センターを附置。生態学・獣医学・感染症学・社会科学を統合した総合的な研究拠点。</td><td class="l">◎ 「管理」の視点はオオカミ再導入論の議論と直結</td></tr>
+<tr><td class="l">東京農工大学</td><td class="l">国立</td><td class="l">農学部 地域生態システム学科</td><td class="l">野生動物管理教育研究センター。他大学と連携した野生動物管理教育カリキュラムの中核。</td><td class="l">◎ 保全管理の体系的訓練が受けられる</td></tr>
+<tr><td class="l">兵庫県立大学</td><td class="l">公立</td><td class="l">環境人間学部／自然・環境科学研究所</td><td class="l">兵庫県森林動物研究センターと一体運営。大学教員が研究センターを併任する全国的にも珍しい形。</td><td class="l">◎ 行政と直結した実データに触れられる</td></tr>
+<tr><td class="l">宇都宮大学</td><td class="l">国立</td><td class="l">農学部 森林科学科</td><td class="l">野生動物管理教育の連携5大学の一員。森林生態系と鳥獣管理。</td><td class="l">○ 森林性哺乳類の生態</td></tr>
+<tr><td class="l">京都大学</td><td class="l">国立</td><td class="l">理学部／農学部</td><td class="l">野生動物研究センター、生態学研究センターを擁する。行動生態学・保全生物学の理論的中枢。</td><td class="l">○ ただし入試難易度が高い</td></tr>
+<tr><td class="l">信州大学</td><td class="l">国立</td><td class="l">農学部／理学部</td><td class="l">ツキノワグマの生態、山岳・亜高山帯生態系。中部山岳地域のフィールドが近い。</td><td class="l">○ 大型哺乳類の野外調査</td></tr>
+<tr><td class="l">岩手大学</td><td class="l">国立</td><td class="l">農学部 森林科学科</td><td class="l">ツキノワグマ・ニホンジカの生態と被害管理。東北の広大な森林をフィールドとする。</td><td class="l">○ 野外調査の機会が多い</td></tr>
+<tr><td class="l">帯広畜産大学</td><td class="l">国立</td><td class="l">畜産学部</td><td class="l">野生動物医学、環境獣医学。エゾシカの資源管理。</td><td class="l">○ 疾病・寄生虫からの生態アプローチ</td></tr>
+<tr><td class="l">三重大学</td><td class="l">国立</td><td class="l">生物資源学部</td><td class="l">森林生態系、野生動物と人間の軋轢（獣害）研究。</td><td class="l">○ 人と大型動物の共存問題</td></tr>
+<tr><td class="l">宮崎大学</td><td class="l">国立</td><td class="l">農学部 森林緑地環境科学科</td><td class="l">シカの個体群動態と森林被害、照葉樹林の生態。</td><td class="l">○ 個体群動態の手法</td></tr>
+<tr><td class="l">琉球大学</td><td class="l">国立</td><td class="l">農学部／理学部</td><td class="l">島嶼生態系、やんばるの固有種保全、外来種問題。</td><td class="l">△ 手法は共通するが動物群が異なる</td></tr>
+</tbody></table></div>
+<p class="small muted">「オオカミ研究との関係」は本資料による評価で、大学側の見解ではありません。研究テーマは教員の異動で変わるので、志望する場合はその研究室の直近3年の論文を必ず確認してください（researchmap／CiNii）。弘前・山形・新潟・静岡・島根・鹿児島などでも森林生態・動物生態の研究が行われています（<span class="flag">要確認</span>）。</p>
+
+<h4 class="bh2">費用（日本の国公立・4年間の目安）</h4>
+<div class="tw"><table class="num"><thead><tr><th class="l">項目</th><th class="r">自宅通学</th><th class="r">自宅外（下宿）</th><th class="l">備考</th></tr></thead><tbody>
+<tr><td class="l">入学料</td><td class="r">282,000円</td><td class="r">282,000円</td><td class="l">国立の標準額</td></tr>
+<tr><td class="l">授業料（535,800円×4年）</td><td class="r">2,143,200円</td><td class="r">2,143,200円</td><td class="l">標準額。これを超える設定の大学あり（<span class="flag">要確認</span>）</td></tr>
+<tr><td class="l">生活費・住居費（4年）</td><td class="r">約400,000円</td><td class="r">約4,000,000円</td><td class="l">自宅外は月8〜10万円で概算</td></tr>
+<tr><td class="l">受験費用</td><td class="r">約100,000円</td><td class="r">約150,000円</td><td class="l">共通テスト＋二次×2〜3校</td></tr>
+<tr><td class="l"><b>合計（概算）</b></td><td class="r"><b>約 293万円</b></td><td class="r"><b>約 657万円</b></td><td class="l">公立大学は県外者の入学料が高い場合あり</td></tr>
+</tbody></table></div>
+<p class="small muted">JASSO の給付型奨学金・授業料減免を使える場合、負担は大きく下がります。進学前に必ず「予約採用」の申込みを（高校3年の春〜秋が申込時期。<span class="flag">要確認</span>：時期は在籍高校に確認）。</p>
+
+<h3 class="bh">中国の大学ルート</h3>
+<h4 class="bh2">制度の骨格：なぜ「保険」になるのか</h4>
+<div class="tw"><table><thead><tr><th class="l">項目</th><th class="l">内容</th><th class="l">日本との違い</th></tr></thead><tbody>
+<tr><td class="l">選抜方法</td><td class="l">国際学生（留学生）枠は「高考」を受験しません。提出書類の審査が中心で、大学によりオンライン面接が加わります。</td><td class="l">一発勝負の学科試験がない。模試の成績が不安定であることが、直接の不利にならない。</td></tr>
+<tr><td class="l">語学要件</td><td class="l">中国語で学ぶ本科はHSK4級以上を求める大学が多く、上位校は5級。CSCの中国語授業本科はHSK3級が要件。</td><td class="l">中国語ゼロからの場合、この要件が最大の障壁。</td></tr>
+<tr><td class="l">出願時期</td><td class="l">秋季入学（9月）に向けて、大学ごとに前年11月〜当年6月に分散。一例として本科出願が11月15日〜3月15日の大学がある。</td><td class="l">日本のような統一日程がない。大学ごとに調べる必要がある。</td></tr>
+<tr><td class="l">例外</td><td class="l">一部の最上位校は、独自の筆記試験を課す場合があります（<span class="flag">要確認</span>）。</td><td class="l">「学科試験なし」はすべての大学に当てはまるわけではありません。</td></tr>
+</tbody></table></div>
+
+<h4 class="bh2">出願に必要な書類</h4>
+<div class="tw"><table><thead><tr><th class="l">#</th><th class="l">書類</th><th class="l">内容・注意点</th><th class="l">取得の目安</th><th class="l">着手時期</th></tr></thead><tbody>
+<tr><td class="l">1</td><td class="l">パスポート</td><td class="l">有効期限が入学後1年以上残っているもの。未取得なら最優先。</td><td class="l">1〜2週間</td><td class="l">2026年8月</td></tr>
+<tr><td class="l">2</td><td class="l">高校卒業（見込）証明書</td><td class="l">出願時は「見込」で受理される場合が多い。入学時に正式版を提出。</td><td class="l">高校で数日</td><td class="l">2026年11月</td></tr>
+<tr><td class="l">3</td><td class="l">高校の成績証明書</td><td class="l">3年間分。英語または中国語の訳文が必要な大学が多い。学校が英文版を出せるかを早めに確認。</td><td class="l">高校で1〜2週間</td><td class="l">2026年10月</td></tr>
+<tr><td class="l">4</td><td class="l">HSK成績証明書</td><td class="l">大学の要求級に達していること。有効期限は2年とされる（<span class="flag">要確認</span>）。</td><td class="l">受験→結果1か月</td><td class="l">2027年1〜3月</td></tr>
+<tr><td class="l">5</td><td class="l">健康診断書（外国人体格検査記録）</td><td class="l">中国指定の様式があり、血液検査・心電図・胸部X線などが必要。対応できる医療機関を探す必要がある。有効期限6か月。</td><td class="l">2〜4週間</td><td class="l">2026年12月</td></tr>
+<tr><td class="l">6</td><td class="l">無犯罪証明書</td><td class="l">警察署（都道府県警）で申請。発行に時間がかかる。大学により不要。</td><td class="l">2〜4週間</td><td class="l">2026年12月</td></tr>
+<tr><td class="l">7</td><td class="l">推薦状 2通</td><td class="l">教員2名から。中国語または英語。大学により不要。</td><td class="l">依頼から2週間</td><td class="l">2026年11月</td></tr>
+<tr><td class="l">8</td><td class="l">学習計画書（個人陳述）</td><td class="l">中国語または英語。800〜1,500字程度。<b>ここが実質的な合否要素です。</b></td><td class="l">作成に1〜2か月</td><td class="l">2026年9月</td></tr>
+<tr><td class="l">9</td><td class="l">経済保証書／残高証明</td><td class="l">学費と生活費を支払える資力の証明。保護者名義の預金残高証明書＋保証書。</td><td class="l">銀行で数日</td><td class="l">2026年12月</td></tr>
+<tr><td class="l">10</td><td class="l">証明写真・出願料</td><td class="l">出願料は数百元（不合格でも返金されません）。</td><td class="l">—</td><td class="l">出願時</td></tr>
+</tbody></table></div>
+<p class="small muted">必要書類は大学により異なります。必ず志望大学の「国際学生招生簡章」で確認を。③成績証明書と⑤健康診断書は取得に最も時間がかかります。日本の入試結果を待ってから動くと間に合いません。</p>
+
+<h4 class="bh2">図2　日本の合格発表と中国側の出願締切の重なり</h4>
+<div class="gantt"><div class="gantt-in">
+  <div class="g-head"><div></div><div>1月</div><div>2月</div><div>3月上旬</div><div>3月下旬</div><div>4–5月</div><div>6月</div></div>
+  <div class="g-lane">
+    <div class="g-lab">日本<span>合格発表</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar key" style="grid-column:9/13">3月上旬 国立前期 合格発表</div><div class="g-bar key" style="grid-column:13/17">3月下旬 中期・後期 発表</div></div>
+    </div>
+  </div>
+  <div class="g-lane">
+    <div class="g-lab">中国側 出願窓<span>大学ごとに異なる</span></div>
+    <div class="g-rows">
+      <div class="g-row"><div class="g-bar" style="grid-column:1/12">早期締切型（例：前年11月15日〜3月15日）</div><div class="g-note" style="grid-column:12/25">← 前期発表とほぼ同時。待つ余裕なし</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:1/21">標準型（〜5月末頃）</div><div class="g-note q" style="grid-column:21/25">← 後期発表後でも間に合う</div></div>
+      <div class="g-row"><div class="g-bar mid" style="grid-column:1/25">遅め締切型（〜6月）＋ 語学留学生ルートはさらに遅い場合あり</div></div>
+      <div class="g-row"><div class="g-bar zone" style="grid-column:9/17">実質的な猶予は わずか約2〜3週間</div></div>
+    </div>
+  </div>
+</div></div>
+<aside class="note alert"><b>結論</b><p>締切が3月中旬の大学を志望する場合、「日本の結果を見てから出願」は成立しません。<br>対策① 締切の遅い大学を最低1校は必ず候補に入れる。<br>対策② 早期締切の大学には先に出願し、日本に受かったら辞退する。<br>また、締切に間に合っても、録取通知書とJW202票が届いてからX1ビザを申請するため、6月合格だと9月入学までの準備がかなり切迫します。</p></aside>
+
+<h4 class="bh2">費用（3パターン比較）</h4>
+<p class="small muted">1元＝21円で換算（2026年7月時点の概算）。大学・都市・専攻により大きく異なります（<span class="flag">要確認</span>）。</p>
+<div class="tw"><table><thead><tr><th class="l">項目</th><th class="l">① 自費（4年）</th><th class="l">② CSC全額給付（4年）</th><th class="l">③ 語学1年＋本科4年（自費・5年）</th></tr></thead><tbody>
+<tr><td class="l">入学経路</td><td class="l">HSK4〜5級を取得して本科に直接出願</td><td class="l">中国政府奨学金に採用され本科入学（予科1年が付く場合あり）</td><td class="l">語学留学生として入学 → 校内試験を経て本科へ</td></tr>
+<tr><td class="l">学費</td><td class="l">20,000〜30,000元／年（≒42〜63万円）</td><td class="l">全額免除</td><td class="l">語学 20,000〜26,000元＋本科4年分</td></tr>
+<tr><td class="l">宿舎費</td><td class="l">6,000〜10,000元／年（≒13〜21万円）</td><td class="l">提供（無償）または住宿補助</td><td class="l">同左</td></tr>
+<tr><td class="l">生活費</td><td class="l">2,000〜3,000元／月（≒4〜6万円）</td><td class="l">生活費支給あり（本科生は月額支給）</td><td class="l">同左</td></tr>
+<tr><td class="l">保険・渡航・雑費</td><td class="l">年 10〜20万円</td><td class="l">年 10〜20万円（渡航費は自己負担が通例）</td><td class="l">年 10〜20万円</td></tr>
+<tr><td class="l"><b>総額（概算）</b></td><td class="l"><b>約 480〜600万円</b></td><td class="l"><b>約 60〜100万円</b></td><td class="l"><b>約 600〜750万円</b></td></tr>
+<tr><td class="l">実現の確実性</td><td class="l">○ 支払えれば確実</td><td class="l">× 学部枠は非常に狭いと考えられる（<span class="flag">要確認</span>）</td><td class="l">○ HSK不要で入学しやすい</td></tr>
+<tr><td class="l">最大の難点</td><td class="l">出発前にHSK4〜5級が必要。中国語ゼロから約1年での到達は容易ではありません。</td><td class="l">これを前提に資金計画を立てるのは危険。不採用時に代替案がないと進路が消えます。</td><td class="l">1年余分にかかり、費用も最大。本科進学が保証されない大学もある。</td></tr>
+</tbody></table></div>
+<aside class="note alert"><b>費用についての最重要の指摘</b><p>「中国の大学だから安い」は、この条件では成り立ちません。自費で4年通う場合（約480〜600万円）は、日本の国立に自宅外から通う場合（約657万円）と大きくは変わりません。むしろ<b>日本の国立で自宅から通学できる場合（約293万円）が、費用面では最も軽い選択</b>です。中国ルートを選ぶ理由は「安さ」ではなく、①学科試験がなく浪人を回避できる、②オオカミの生息地にアクセスできる、③中国語という資産が残る、の3点。この3点に4年分の費用を払う価値があるかが判断の核心です。</p></aside>
+
+<h4 class="bh2">中国政府奨学金（CSC）</h4>
+<div class="tw"><table><thead><tr><th class="l">項目</th><th class="l">内容</th><th class="l">確からしさ</th></tr></thead><tbody>
+<tr><td class="l">語学要件（学部）</td><td class="l">中国語で学ぶ本科生はHSK3級の合格証書が必要。</td><td class="l">確認済</td></tr>
+<tr><td class="l">予科（重要）</td><td class="l">本科の専門課程を始める前に、指定の予科機関で1学年の中国語＋基礎科目を学び、修了審査に合格する必要があります。中国語水平が受入大学の入学要件に達していれば予科免除を申請できます。</td><td class="l">確認済</td></tr>
+<tr><td class="l">給付内容</td><td class="l">学費免除、宿舎の提供（または住宿補助）、生活費の月額支給、総合医療保険。渡航費は原則自己負担とされることが多い。</td><td class="l">一般傾向</td></tr>
+<tr><td class="l">申請ルート</td><td class="l">A類：中国駐日本国大使館 教育処を通じた推薦（国別枠）／B類：大学に直接申請。情報は「留学中国」（campuschina.org）に集約。</td><td class="l">確認済</td></tr>
+<tr><td class="l">締切</td><td class="l">プロジェクトにより異なる。2026年度の大学院向け高水準プロジェクト（B類）は2026年1月20日、シルクロード（B類）は3月15日が締切だった。学部の日本国内窓口の締切は大使館教育処の公告で確認。</td><td class="l">確認済（学部枠の締切は<span class="flag">不明</span>）</td></tr>
+<tr><td class="l">学部枠の規模</td><td class="l">日本国籍者向けのCSC学部枠は、大学院枠に比べて著しく小さいと考えられます。本資料では確認できませんでした。</td><td class="l"><span class="flag">要確認</span></td></tr>
+</tbody></table></div>
+<aside class="note warn"><b>CSCの現実的な位置づけ</b><p><b>良い点：</b>予科1年が制度に組み込まれているため、中国語ゼロの状態でも入口としては成立します。HSK3級は8月から真剣に取り組めば2027年前半に到達しうる水準です（HSK4級・5級よりはるかに現実的）。<br><b>悪い点：</b>採用の見込みが立ちません。「CSCに通る前提」の資金計画は組んではいけません。出願はしてよいが、家計の判断は「自費で払えるか」で行ってください。</p></aside>
+
+<h4 class="bh2">動物生態学が学べる中国の大学</h4>
+<p class="small muted">この表は本資料の中で<b>最も確実性が低い部分</b>です。研究者個人のテーマまで裏取りできていません。「この大学に行けばオオカミの研究ができる」とは読まないでください。「候補として調べる価値がある大学」の一覧です。</p>
+<div class="tw"><table><thead><tr><th class="l">大学</th><th class="l">関連学院</th><th class="l">研究内容・特徴</th><th class="l">オオカミとの距離</th><th class="l">確からしさ</th></tr></thead><tbody>
+<tr><td class="l">東北林業大学<br>（黒竜江省ハルビン）</td><td class="l">野生動物与自然保護地学院</td><td class="l">中国で最初の野生動物専門の学院（1960年設立）。国家林業当局のネコ科動物研究センター等を擁する。学部に「野生動物与自然保護区管理」専攻（国家一流専業）。</td><td class="l">◎ 中国で野生動物を学ぶなら第一候補。ただしオオカミ専門の研究室があるかは未確認</td><td class="l">確認済（学院の存在・体制）</td></tr>
+<tr><td class="l">北京師範大学<br>（北京）</td><td class="l">生命科学学院／環境学院</td><td class="l">生物多様性科学与生態工程 教育部重点実験室。環境・生態分野で世界上位。大型ネコ科動物の研究で知られる。</td><td class="l">○ 生態学の理論・解析の訓練としては有力</td><td class="l">確認済（研究水準）</td></tr>
+<tr><td class="l">北京林業大学<br>（北京）</td><td class="l">生態与自然保護学院</td><td class="l">森林生態学、野生動物保護、自然保護地計画。</td><td class="l">○</td><td class="l"><span class="flag">要確認</span></td></tr>
+<tr><td class="l">内モンゴル大学<br>（フフホト）</td><td class="l">生態与環境学院</td><td class="l">草原生態系の研究。内モンゴルは中国でオオカミが生息する主要地域の一つ。</td><td class="l">◎ 地理的近接性は最大。研究体制は未確認</td><td class="l"><span class="flag">要確認</span></td></tr>
+<tr><td class="l">蘭州大学<br>（甘粛省蘭州）</td><td class="l">生命科学学院／草地農業科技学院</td><td class="l">草原生態学、青蔵高原の生態系、放牧生態。高原の哺乳類研究の蓄積がある。</td><td class="l">○ 青蔵高原にはオオカミが生息</td><td class="l"><span class="flag">要確認</span></td></tr>
+<tr><td class="l">新疆大学<br>（ウルムチ）</td><td class="l">生命科学与技術学院</td><td class="l">乾燥地・荒漠生態系、山地生態系。新疆はオオカミの生息地。</td><td class="l">○ 地理的近接性</td><td class="l"><span class="flag">要確認</span></td></tr>
+<tr><td class="l">北京大学<br>（北京）</td><td class="l">生命科学学院</td><td class="l">保全生物学の中核。青蔵高原での大型食肉目の保全研究が知られる。</td><td class="l">◎ ただし入学要件が最も厳しい（独自試験の可能性）</td><td class="l"><span class="flag">要確認</span></td></tr>
+</tbody></table></div>
+<aside class="note good"><b>この表の使い方 ── 大学名ではなく「人」で選んでください</b><p>生態学は研究者個人のテーマに強く依存する分野です。大学の知名度より「オオカミ（狼）を対象に、この5年以内に論文を出している研究者が誰か」を特定するほうが確実です。① Google Scholar で <b>wolf OR "Canis lupus" ecology China</b> と検索 → ② 出てきた論文の著者の所属機関を見る → ③ その機関が学部（本科）留学生を受け入れているかを調べる。この作業は中国語ができなくても今日から英語だけでできて、そのまま総合型選抜の出願書類の材料にもなります。</p></aside>
+
+<h4 class="bh2">デメリットとリスク（必ずお読みください）</h4>
+<div class="tw"><table><thead><tr><th class="l">リスク</th><th class="l">内容</th><th class="l">影響の大きさ／対処</th></tr></thead><tbody>
+<tr><td class="l">① 卒業できない</td><td class="l">入学は書類審査で比較的容易ですが、卒業は別問題です。専門科目の授業・試験・卒業論文をすべて中国語で行います。学位取得の基準そのものは下がりません。</td><td class="l"><b>最大のリスク。</b>中退した場合、学歴も投じた費用も残りません。浪人回避のつもりが、4年後により厳しい状況になり得ます。</td></tr>
+<tr><td class="l">② 費用は安くない</td><td class="l">自費なら4年で約480〜600万円。日本の国立に自宅外から通うのと大差ありません。加えて帰省の航空券が毎年発生します。</td><td class="l">資金制約がある場合、「日本の国立＋自宅通学」が費用面では最善である事実は動きません。</td></tr>
+<tr><td class="l">③ 学部でオオカミ研究に入れる保証がない</td><td class="l">中国でも学部の2〜3年目までは基礎教育が中心で、研究室配属は主に大学院から。「生息地の国に行く＝オオカミの研究ができる」ではありません。</td><td class="l">期待値の管理が必要。学部は「生態学の基礎＋言語」を得る場と割り切るほうが現実的です。</td></tr>
+<tr><td class="l">④ 語学の壁が想定より重い</td><td class="l">HSK4〜5級は「日常会話」ではなく「学術中国語の入口」。到達しても専門科目の講義についていくにはさらに時間がかかります。</td><td class="l">入学後1〜2年は成績が伸びない前提で計画を。GPAが下がると大学院留学が不利になります。</td></tr>
+<tr><td class="l">⑤ 学歴の通用性</td><td class="l">大学院で第三国（欧米など）に進む場合、中国の大学の学位・成績の評価方法が出願先により異なります（<span class="flag">要確認</span>）。</td><td class="l">志望する大学院の出願要件を入学前に確認しておくと安全です。</td></tr>
+<tr><td class="l">⑥ 制度・情勢の変動</td><td class="l">ビザ制度、留学生受入方針、日中関係は変動しうる要因です。在学中の制度変更は予測できません。</td><td class="l">本資料では評価できません。ただし存在するリスクとして認識してください。</td></tr>
+<tr><td class="l">⑦ 情報の非対称</td><td class="l">中国の大学の情報は中国語での公開が中心で、仲介業者を通すと不正確な情報や高額な手数料が発生する場合があります。</td><td class="l">必ず大学の公式サイト（招生簡章）を一次情報として確認を。業者の説明を根拠に判断しないでください。</td></tr>
+</tbody></table></div>
+<aside class="note alert"><b>保護者の方への確認事項</b><p>中国ルートを検討する場合、次の3つを出願前にご家庭で決めておいてください。<br>1. <b>自費で4年分（約480〜600万円）を負担できるか。</b>できないなら、CSC不採用の時点でこのルートは消えます。その場合の代替案を先に決めておく必要があります。<br>2. <b>中退した場合にどうするか。</b>「1年目で語学についていけなかった場合」を、あらかじめ話し合っておいてください。<br>3. <b>出願料・書類取得費（数万円）を、無駄になる前提で出せるか。</b>保険としての中国出願は、日本に合格すれば必ず捨てるコストになります。</p></aside>
+
+<h3 class="bh">次にやること（チェックリスト）</h3>
+<div class="tw"><table><thead><tr><th class="l">時期</th><th class="l">やること</th><th class="l">担当</th></tr></thead><tbody>
+<tr><td class="l">2026年8月</td><td class="l">パスポートを取得する（未取得の場合）</td><td class="l">本人＋保護者</td></tr>
+<tr><td class="l">2026年8月</td><td class="l">中国語学習を開始する（1日30〜45分の固定枠。増やさない）</td><td class="l">本人</td></tr>
+<tr><td class="l">2026年8月</td><td class="l">Google Scholar でオオカミ研究者を10名リストアップする</td><td class="l">本人</td></tr>
+<tr><td class="l">2026年8月</td><td class="l">JASSO給付型奨学金の予約採用について高校に確認する</td><td class="l">保護者</td></tr>
+<tr><td class="l">2026年9月</td><td class="l">志望校を「共通テスト科目数の少ない順」に並べ替え、捨てる科目を確定する</td><td class="l">本人＋担任</td></tr>
+<tr><td class="l">2026年9月</td><td class="l">総合型・学校推薦型選抜に出願する大学を1つ以上決める</td><td class="l">本人＋担任</td></tr>
+<tr><td class="l">2026年9〜11月</td><td class="l">中国の候補大学5校の招生簡章を集め、出願締切の一覧表を作る</td><td class="l">本人</td></tr>
+<tr><td class="l">2026年10月</td><td class="l">高校の成績証明書（英文版が出せるか含む）を確認・依頼する</td><td class="l">本人</td></tr>
+<tr><td class="l">2026年11月</td><td class="l">中国側の指定様式に対応できる健康診断の医療機関を探す</td><td class="l">保護者</td></tr>
+<tr><td class="l">2026年12月</td><td class="l">CSCの日本国内窓口の締切を大使館教育処の公告で確認する</td><td class="l">保護者</td></tr>
+<tr><td class="l">2026年12月</td><td class="l">家族会議：自費で4年払えるか／中退時どうするかを決める</td><td class="l">保護者＋本人</td></tr>
+<tr><td class="l">2027年3月</td><td class="l">日本の結果を見て、中国側を進めるか辞退するかを決定する</td><td class="l">保護者＋本人</td></tr>
+</tbody></table></div>
+
+<h3 class="bh">最後に ── この別冊で最も伝えたいこと</h3>
+<p>オオカミの研究職という目標は、学部の4年間だけで達成するものではありません。大学院で海外に出る意志があるなら、学部段階で決定的に重要なのは「どの大学に入るか」ではなく、次の4つです。</p>
+<div class="tw"><table><thead><tr><th class="l">学部で積むべきもの</th><th class="l">理由</th></tr></thead><tbody>
+<tr><td class="l">① GPA（成績）</td><td class="l">海外の大学院出願で最初に見られます。入った大学の名前より、そこで取った成績のほうが効きます。</td></tr>
+<tr><td class="l">② 英語</td><td class="l">生態学の論文はほぼ英語です。日本にいても中国にいても必須で、代替がききません。</td></tr>
+<tr><td class="l">③ 統計・データ解析</td><td class="l">現代の生態学は統計学です。動物が好きという動機だけでは足りません。数学から逃げると、後で必ず行き止まりになります。</td></tr>
+<tr><td class="l">④ 野外調査の経験</td><td class="l">対象がシカでもクマでも構いません。手法は共通しており、経験は種を超えて通用します。</td></tr>
+</tbody></table></div>
+<aside class="note good"><b>この別冊の推奨</b><p>この4つは、日本の国公立でも中国の大学でも積むことができます。したがって2027年の進学先の選択は、研究者になれるかどうかを決定づけるものではありません。まず「浪人しない」ことを確保し、そのうえでこの4つを積める環境を選ぶ ── これが結論です。</p></aside>
+
+<details class="srcs"><summary>この別冊で参照したもの（2026年7月時点）</summary><ul>
+<li>大学入試センター https://www.dnc.ac.jp/</li>
+<li>日本学生支援機構（JASSO） https://www.jasso.go.jp/shogakukin/</li>
+<li>岐阜大学 野生動物管理学研究センター https://www1.gifu-u.ac.jp/~rcwm/</li>
+<li>東京農工大学 農学部 https://www.tuat.ac.jp/</li>
+<li>北海道大学 農学部／獣医学部 https://www.hokudai.ac.jp/</li>
+<li>兵庫県森林動物研究センター（兵庫県立大学 自然・環境科学研究所のページから）</li>
+<li>CiNii Research https://cir.nii.ac.jp/ ／ researchmap https://researchmap.jp/</li>
+<li>留学中国（CSC公式） https://www.campuschina.org/</li>
+<li>国家留学基金管理委員会（CSC） https://www.csc.edu.cn/</li>
+<li>中国駐日本国大使館 https://jp.china-embassy.gov.cn/（教育処：東京都江東区平野2-2-9／03-3643-0305）</li>
+<li>東北林業大学 野生動物与自然保護地学院 https://wildlife.nefu.edu.cn/ ／ 東北林業大学 https://www.nefu.edu.cn/</li>
+<li>北京師範大学 留学生招生網 https://admission-is.bnu.edu.cn/ ／ 生命科学学院（英） https://english-cls.bnu.edu.cn/faculty/ecology/</li>
+<li>HSK（漢語水平考試）日本事務局 ／ Google Scholar https://scholar.google.com/</li>
+</ul></details>
+<p class="small muted">本別冊は2026年7月時点で入手できた公開情報にもとづきます。入試要項・学費・奨学金の条件および締切は、必ず各大学・各機関の一次情報で再確認してください。記載と一次情報が異なる場合、一次情報が正です。<span class="flag">要確認</span>を付した項目は裏付けが取れていない事項です。</p>
+</section>
+
 </main>
 </div>
 <button id="totop" title="先頭へもどる" aria-label="先頭へもどる">↑</button>
